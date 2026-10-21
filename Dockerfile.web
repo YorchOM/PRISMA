@@ -3,7 +3,9 @@
 # como /var/www/html (ver serviyorch/sites/polarprisma/docker-compose.yml).
 # La imagen solo aporta el endurecimiento de Apache, que debe sobrevivir
 # a recreaciones del contenedor.
-FROM php:8.2-apache
+# PHP 8.4 desde el 22-oct-2026 (la 8.2 deja de tener parches el 31-dic-2026), probada antes
+# en paralelo frente a la 8.2: mismas respuestas en las 133 páginas y sin avisos nuevos.
+FROM php:8.4-apache
 
 # pdo_sqlite, sqlite3, curl y mbstring ya vienen en la imagen oficial.
 
