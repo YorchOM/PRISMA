@@ -43,12 +43,12 @@ Pipeline en dos fases (ambas 1×/día, encadenadas de madrugada):
 cat fichero.php | ssh ea1jxe 'docker exec -i polarprisma php -l'
 ```
 
-**Desplegar** (tras commit+push a master):
+**Desplegar** (tras commit a master):
 ```bash
-ssh ea1jxe 'cd ~/sites/polarprisma && git pull --ff-only -q'
-# Solo si cambió Dockerfile.web / apache: reconstruir imagen
-ssh ea1jxe 'cd ~/docker/serviyorch/sites/polarprisma && docker compose up -d --build'
-# Si cambian labels de Ofelia (crons): docker restart ofelia
+./deploy.sh --ver   # qué commits se aplican; no toca nada
+./deploy.sh         # push + git pull --ff-only en el servidor + comprobación
+./deploy.sh --build # además, si cambió Dockerfile.web / apache: reconstruir imagen
+# Si cambian labels de Ofelia (crons): ssh ea1jxe 'docker restart ofelia'
 ```
 
 **Ejecutar a mano** (como www-data para no dejar ficheros de root en `data/`):
