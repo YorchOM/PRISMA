@@ -184,6 +184,10 @@ function telegram_digest_construir(string $fecha, $umbral = null, $cap = null) {
  */
 function telegram_digest_enviar($fecha = null): bool {
     $cfg = prisma_cfg();
+    if (empty($cfg['digest_enabled'])) {
+        prisma_log("DIGEST", "Digest desactivado (DIGEST_ENABLED!=1 en el .env) — no se envía.");
+        return false;
+    }
     if (empty($cfg['telegram_bot_token']) || empty($cfg['telegram_chat_id'])) return false;
 
     if ($fecha === null) {

@@ -68,6 +68,8 @@ $GLOBALS['_PRISMA_CFG'] = array(
     // Autopublicación: postea la tarjeta del análisis más polarizado del día al canal.
     // DESACTIVADA por defecto: poner AUTOPOST_ENABLED=1 en el .env para activarla.
     'autopost_enabled'  => (getenv('AUTOPOST_ENABLED') === '1'),
+    // Digest diario: APAGADO desde el 26-nov-2026. DIGEST_ENABLED=1 en el .env para volver.
+    'digest_enabled'    => (getenv('DIGEST_ENABLED') === '1'),
     'autopost_umbral'   => 0.55,   // % mínimo de polarización para publicar
     'autopost_telegram' => true,   // canal Telegram propio (usa telegram_chat_id)
     'telegram_digest_umbral' => 0.35, // polarización mínima para entrar en el digest
