@@ -48,6 +48,11 @@ function anthropic_daily_spend(): float {
  */
 function anthropic_check_budget(): void {
     $cfg = prisma_cfg();
+    // Interruptor general: todas las llamadas (síncronas, batch, gate Haiku,
+    // observatorio) pasan por aquí antes de gastar.
+    if (empty($cfg['ia_activa'])) {
+        throw new RuntimeException('IA desactivada (IA_ACTIVA!=1 en el .env). Abortando.');
+    }
     $budget = $cfg['daily_budget_usd'] ?? 999;
     $spent = anthropic_daily_spend();
 

@@ -77,6 +77,10 @@ $GLOBALS['_PRISMA_CFG'] = array(
     'panel_pass'          => getenv('PRISMA_PANEL_PASS') ?: 'prisma2026',
 
     // ── Límites de coste ────────────────────────────────────────────
+    // Interruptor general de la IA (Anthropic). APAGADA por defecto desde el
+    // 26-nov-2026: el análisis no aportaba valor frente a la prensa en tiempo real.
+    // Poner IA_ACTIVA=1 en el .env para volver a encenderla.
+    'ia_activa'           => (getenv('IA_ACTIVA') === '1'),
     'daily_budget_usd'    => 6.00,
     // Fase 2 vía Message Batches API (50% de coste; el cron tarda minutos más).
     // El panel y los temas manuales siguen usando la vía síncrona.
